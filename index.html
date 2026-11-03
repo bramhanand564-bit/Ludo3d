@@ -3,41 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ludo 3D Royal - Offline Edition</title>
+    <title>Ludo Royal 3D</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="app-container">
-        
-        <!-- ================= SCREEN 1: MAIN MENU & SELECTION ================= -->
+
+        <!-- ================= SCREEN 1: MAIN MENU ================= -->
         <div id="menu-screen" class="screen active">
-            <div class="logo-header">
-                <div class="crown-icon">👑</div>
-                <h1 class="game-title">LUDO <span>ROYAL 3D</span></h1>
+            <!-- Top Bar with Settings Icon -->
+            <div class="top-bar">
+                <div class="profile-pill">👑 Ludo King 3D</div>
+                <button id="btn-open-settings" class="settings-icon-btn" title="Settings">⚙️</button>
             </div>
 
-            <!-- Token Selection (All Unlocked) -->
             <div class="panel-box">
-                <div class="panel-header">SELECT TOKEN (ALL UNLOCKED)</div>
+                <div class="panel-header">SELECT TOKEN</div>
                 <div class="token-selector">
                     <div class="token-option selected" data-token="pin">📍<span>Classic</span></div>
                     <div class="token-option" data-token="star">⭐<span>Star</span></div>
                     <div class="token-option" data-token="hammer">🔨<span>Thor</span></div>
-                    <div class="token-option" data-token="crown">👑<span>King</span></div>
-                    <div class="token-option" data-token="rocket">🚀<span>Cyber</span></div>
+                    <div class="token-option" data-token="crown">👑<span>Crown</span></div>
+                    <div class="token-option" data-token="rocket">🚀<span>Rocket</span></div>
                 </div>
             </div>
 
-            <!-- Game Mode Selection -->
             <div class="panel-box">
-                <div class="panel-header">SELECT GAME MODE</div>
+                <div class="panel-header">SELECT GAME</div>
                 <div class="mode-list">
                     <label class="mode-card selected" data-mode="local">
                         <div class="mode-icon">👥</div>
                         <div class="mode-info">
-                            <h3>Local Player</h3>
+                            <h3>Classic Local</h3>
                             <p>Pass & Play with Friends</p>
                         </div>
                         <div class="radio-circle"></div>
@@ -46,118 +45,227 @@
                     <label class="mode-card" data-mode="computer">
                         <div class="mode-icon">🤖</div>
                         <div class="mode-info">
-                            <h3>Play vs Computer</h3>
-                            <p>Smart Offline AI</p>
+                            <h3>vs Computer</h3>
+                            <p>Play Offline with Smart AI</p>
                         </div>
                         <div class="radio-circle"></div>
                     </label>
                 </div>
             </div>
 
-            <button id="btn-to-setup" class="btn-3d gold-btn">NEXT</button>
+            <button id="btn-to-setup" class="btn-3d gold-btn">Next</button>
         </div>
 
-        <!-- ================= SCREEN 2: PLAYER & COLOR SETUP ================= -->
-        <div id="setup-screen" class="screen">
-            <div class="panel-box">
-                <div class="panel-header">CHOOSE COLOR & PLAYERS</div>
-                
-                <div class="player-count-tabs">
-                    <button class="count-btn active" data-count="2">2P</button>
-                    <button class="count-btn" data-count="3">3P</button>
-                    <button class="count-btn" data-count="4">4P</button>
+        <!-- ================= SETTINGS MODAL (WIN PROBABILITY) ================= -->
+        <div id="settings-modal" class="modal-overlay hidden">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h2>⚙️ GAME SETTINGS & LUCK %</h2>
+                    <button id="btn-close-settings" class="close-x">✖</button>
+                </div>
+                <p class="modal-sub">Jis color ka % zyada hoga, game mein uske jeetne ke chances sabse zyada honge:</p>
+
+                <div class="prob-list">
+                    <!-- Blue Probability -->
+                    <div class="prob-item">
+                        <div class="prob-top">
+                            <span class="color-dot blue"></span>
+                            <strong>BLUE (नीला)</strong>
+                            <span id="val-prob-blue" class="prob-badge">50%</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="prob-slider blue-slider" data-color="blue" id="slider-blue">
+                        <div class="preset-btns">
+                            <button data-color="blue" data-val="10">10%</button>
+                            <button data-color="blue" data-val="25">25%</button>
+                            <button data-color="blue" data-val="50">50%</button>
+                            <button data-color="blue" data-val="75">75%</button>
+                            <button data-color="blue" data-val="100">100%</button>
+                        </div>
+                    </div>
+
+                    <!-- Red Probability -->
+                    <div class="prob-item">
+                        <div class="prob-top">
+                            <span class="color-dot red"></span>
+                            <strong>RED (लाल)</strong>
+                            <span id="val-prob-red" class="prob-badge">50%</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="prob-slider red-slider" data-color="red" id="slider-red">
+                        <div class="preset-btns">
+                            <button data-color="red" data-val="10">10%</button>
+                            <button data-color="red" data-val="25">25%</button>
+                            <button data-color="red" data-val="50">50%</button>
+                            <button data-color="red" data-val="75">75%</button>
+                            <button data-color="red" data-val="100">100%</button>
+                        </div>
+                    </div>
+
+                    <!-- Green Probability -->
+                    <div class="prob-item">
+                        <div class="prob-top">
+                            <span class="color-dot green"></span>
+                            <strong>GREEN (हरा)</strong>
+                            <span id="val-prob-green" class="prob-badge">50%</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="prob-slider green-slider" data-color="green" id="slider-green">
+                        <div class="preset-btns">
+                            <button data-color="green" data-val="10">10%</button>
+                            <button data-color="green" data-val="25">25%</button>
+                            <button data-color="green" data-val="50">50%</button>
+                            <button data-color="green" data-val="75">75%</button>
+                            <button data-color="green" data-val="100">100%</button>
+                        </div>
+                    </div>
+
+                    <!-- Yellow Probability -->
+                    <div class="prob-item">
+                        <div class="prob-top">
+                            <span class="color-dot yellow"></span>
+                            <strong>YELLOW (पीला)</strong>
+                            <span id="val-prob-yellow" class="prob-badge">50%</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="prob-slider yellow-slider" data-color="yellow" id="slider-yellow">
+                        <div class="preset-btns">
+                            <button data-color="yellow" data-val="10">10%</button>
+                            <button data-color="yellow" data-val="25">25%</button>
+                            <button data-color="yellow" data-val="50">50%</button>
+                            <button data-color="yellow" data-val="75">75%</button>
+                            <button data-color="yellow" data-val="100">100%</button>
+                        </div>
+                    </div>
                 </div>
 
+                <div class="modal-actions">
+                    <button id="btn-reset-prob" class="btn-reset">Reset All (50%)</button>
+                    <button id="btn-save-prob" class="btn-save">SAVE & APPLY</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ONE TOKEN OUT POPUP (LIKE VIDEO 00:10) ================= -->
+        <div id="quick-popup" class="modal-overlay hidden">
+            <div class="modal-card quick-card">
+                <button id="btn-close-quick" class="close-x">✖</button>
+                <div class="quick-preview">📍 Keep one token out for all!</div>
+                <button id="btn-confirm-quick" class="btn-3d gold-btn">OKAY</button>
+            </div>
+        </div>
+
+        <!-- ================= SCREEN 2: CHOOSE COLOR & NAME ================= -->
+        <div id="setup-screen" class="screen">
+            <div class="panel-box">
+                <div class="panel-header">CHOOSE COLOR AND NAME</div>
+                <p class="setup-hint">Koi bhi 2, 3 ya 4 colors tick (✔) karein:</p>
+
                 <div class="players-input-list">
-                    <div class="player-row" data-color="blue">
+                    <div class="player-row selected-row" data-color="blue">
+                        <div class="row-check checked" data-color="blue">✔</div>
                         <span class="color-dot blue"></span>
                         <input type="text" value="Player 1" id="name-blue">
                         <span class="dice-mini">🎲</span>
                     </div>
-                    <div class="player-row" data-color="green">
+
+                    <div class="player-row selected-row" data-color="green">
+                        <div class="row-check checked" data-color="green">✔</div>
                         <span class="color-dot green"></span>
                         <input type="text" value="Player 2" id="name-green">
                         <span class="dice-mini">🎲</span>
                     </div>
-                    <div class="player-row hidden" data-color="red">
+
+                    <div class="player-row" data-color="red">
+                        <div class="row-check" data-color="red"></div>
                         <span class="color-dot red"></span>
                         <input type="text" value="Player 3" id="name-red">
                         <span class="dice-mini">🎲</span>
                     </div>
-                    <div class="player-row hidden" data-color="yellow">
+
+                    <div class="player-row" data-color="yellow">
+                        <div class="row-check" data-color="yellow"></div>
                         <span class="color-dot yellow"></span>
                         <input type="text" value="Player 4" id="name-yellow">
                         <span class="dice-mini">🎲</span>
                     </div>
                 </div>
+
+                <div class="player-count-tabs">
+                    <button class="count-btn active" data-count="2">2P</button>
+                    <button class="count-btn" data-count="3">3P</button>
+                    <button class="count-btn" data-count="4">4P</button>
+                </div>
             </div>
 
             <div class="setup-buttons">
-                <button id="btn-play-normal" class="btn-3d gold-btn">PLAY CLASSIC</button>
+                <button id="btn-play-normal" class="btn-3d gold-btn">Play</button>
                 <button id="btn-play-quick" class="btn-3d blue-btn">
-                    PLAY<br><small>- One Token Out -</small>
+                    Play<br><small>- One Token Out -</small>
                 </button>
             </div>
             <button id="btn-back-menu" class="btn-back">↩</button>
         </div>
 
-        <!-- ================= SCREEN 3: 3D GAME BOARD ================= -->
+        <!-- ================= SCREEN 3: LUDO KING GAME BOARD ================= -->
         <div id="game-screen" class="screen">
-            
-            <!-- Top Player HUDs (Red & Green) -->
+
+            <!-- Top HUDs (Red & Green) -->
             <div class="hud-row top-hud">
-                <div id="hud-red" class="player-hud red-hud inactive">
-                    <div class="hud-name">Player 3</div>
-                    <div class="hud-controls">
-                        <div class="token-badge red"></div>
-                        <div class="dice-box" data-player="red">
-                            <div class="dice-3d" id="dice-red">🎲</div>
+                <div class="hud-wrapper">
+                    <div id="hud-red" class="player-hud red-hud inactive">
+                        <div class="hud-controls">
+                            <div class="hud-pin" id="hud-pin-red"></div>
+                            <div class="dice-box" data-player="red">
+                                <div class="dice-holder" id="dice-red"></div>
+                            </div>
                         </div>
                     </div>
+                    <div class="turn-arrow right-arrow" id="arrow-red">⬅</div>
                 </div>
 
-                <div id="hud-green" class="player-hud green-hud">
-                    <div class="hud-name">Player 2</div>
-                    <div class="hud-controls">
-                        <div class="dice-box" data-player="green">
-                            <div class="dice-3d" id="dice-green">🎲</div>
+                <div class="hud-wrapper right-side">
+                    <div class="turn-arrow left-arrow" id="arrow-green">➡</div>
+                    <div id="hud-green" class="player-hud green-hud">
+                        <div class="hud-controls">
+                            <div class="dice-box" data-player="green">
+                                <div class="dice-holder" id="dice-green"></div>
+                            </div>
+                            <div class="hud-pin" id="hud-pin-green"></div>
                         </div>
-                        <div class="token-badge green"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- 3D Ludo Board Container -->
+            <!-- Main Ludo Board -->
             <div class="board-wrapper">
-                <div id="ludo-board" class="ludo-board">
-                    <!-- JS (Part 2) will dynamically generate the exact 15x15 grid, bases, stars, and 3D tokens here -->
-                </div>
+                <div id="ludo-board" class="ludo-board"></div>
             </div>
 
-            <!-- Bottom Player HUDs (Blue & Yellow) -->
+            <!-- Bottom HUDs (Blue & Yellow) -->
             <div class="hud-row bottom-hud">
-                <div id="hud-blue" class="player-hud blue-hud active-turn">
-                    <div class="hud-controls">
-                        <div class="token-badge blue"></div>
-                        <div class="dice-box" data-player="blue">
-                            <div class="dice-3d" id="dice-blue">🎲</div>
+                <div class="hud-wrapper">
+                    <div id="hud-blue" class="player-hud blue-hud active-turn">
+                        <div class="hud-controls">
+                            <div class="hud-pin" id="hud-pin-blue"></div>
+                            <div class="dice-box" data-player="blue">
+                                <div class="dice-holder" id="dice-blue"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="hud-name">Player 1</div>
+                    <div class="turn-arrow right-arrow active" id="arrow-blue">⬅</div>
                 </div>
 
-                <div id="hud-yellow" class="player-hud yellow-hud inactive">
-                    <div class="hud-controls">
-                        <div class="dice-box" data-player="yellow">
-                            <div class="dice-3d" id="dice-yellow">🎲</div>
+                <div class="hud-wrapper right-side">
+                    <div class="turn-arrow left-arrow" id="arrow-yellow">➡</div>
+                    <div id="hud-yellow" class="player-hud yellow-hud inactive">
+                        <div class="hud-controls">
+                            <div class="dice-box" data-player="yellow">
+                                <div class="dice-holder" id="dice-yellow"></div>
+                            </div>
+                            <div class="hud-pin" id="hud-pin-yellow"></div>
                         </div>
-                        <div class="token-badge yellow"></div>
                     </div>
-                    <div class="hud-name">Player 4</div>
                 </div>
             </div>
 
-            <button id="btn-leave-game" class="btn-back">🏠</button>
+            <button id="btn-leave-game" class="btn-back menu-bars">☰</button>
         </div>
 
     </div>
