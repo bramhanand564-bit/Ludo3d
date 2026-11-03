@@ -1,9 +1,9 @@
 :root {
     --gold-border: #ffcb3b;
-    --ludo-red: #e31019;
-    --ludo-green: #00992f;
-    --ludo-blue: #009be2;
-    --ludo-yellow: #ffe000;
+    --ludo-red: #ec1c24;
+    --ludo-green: #00a651;
+    --ludo-blue: #00aeef;
+    --ludo-yellow: #fff200;
 }
 
 * {
@@ -16,7 +16,7 @@
 }
 
 body {
-    background: radial-gradient(circle at center, #1b4f9c 0%, #07193f 100%);
+    background-color: #164070;
     color: #fff;
     height: 100vh;
     display: flex;
@@ -25,22 +25,21 @@ body {
     overflow: hidden;
 }
 
+/* Tilted Ludo Board Pattern Background like Video 2 */
 .app-container {
     width: 100%;
     max-width: 440px;
     height: 100vh;
     position: relative;
-    background: repeating-linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.03) 0px,
-        rgba(255, 255, 255, 0.03) 28px,
-        transparent 28px,
-        transparent 56px
-    );
+    background-color: #1c4e80;
+    background-image:
+        linear-gradient(115deg, rgba(10, 35, 68, 0.82) 0%, rgba(22, 75, 122, 0.78) 50%, rgba(10, 35, 68, 0.85) 100%),
+        repeating-linear-gradient(30deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 2px, transparent 2px, transparent 26px),
+        repeating-linear-gradient(120deg, rgba(0, 195, 255, 0.08) 0px, rgba(0, 195, 255, 0.08) 2px, transparent 2px, transparent 26px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px;
+    padding: 8px;
 }
 
 .screen {
@@ -55,7 +54,7 @@ body {
     display: flex;
 }
 
-/* Top Bar & Settings Gear */
+/* Top Bar */
 .top-bar {
     position: absolute;
     top: 14px;
@@ -71,9 +70,8 @@ body {
     padding: 6px 14px;
     border-radius: 20px;
     font-weight: 800;
-    font-size: 14px;
+    font-size: 13px;
     color: #ffe066;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 .settings-icon-btn {
     width: 44px;
@@ -84,13 +82,6 @@ body {
     font-size: 22px;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-}
-.settings-icon-btn:active {
-    transform: scale(0.9) rotate(45deg);
 }
 
 /* Panels */
@@ -99,8 +90,6 @@ body {
     background: linear-gradient(180deg, #0045a5 0%, #011847 50%, #0045a5 100%);
     border-top: 2.5px solid var(--gold-border);
     border-bottom: 2.5px solid var(--gold-border);
-    border-left: 1px solid rgba(255,203,59,0.5);
-    border-right: 1px solid rgba(255,203,59,0.5);
     border-radius: 14px;
     padding: 14px;
     margin-bottom: 14px;
@@ -111,7 +100,6 @@ body {
     color: #ffe047;
     font-weight: 800;
     font-size: 16px;
-    letter-spacing: 0.8px;
     margin-bottom: 10px;
     text-shadow: 0 2px 3px #000;
 }
@@ -167,16 +155,9 @@ body {
     font-size: 26px;
     margin-right: 12px;
 }
-.mode-info {
-    flex: 1;
-}
-.mode-info h3 {
-    font-size: 15px;
-}
-.mode-info p {
-    font-size: 11px;
-    color: #b5d0ff;
-}
+.mode-info { flex: 1; }
+.mode-info h3 { font-size: 15px; }
+.mode-info p { font-size: 11px; color: #b5d0ff; }
 .radio-circle {
     width: 28px;
     height: 28px;
@@ -197,12 +178,11 @@ body {
     font-weight: 900;
 }
 
-/* 3D Buttons */
 .btn-3d {
     width: 65%;
     padding: 10px 18px;
     border-radius: 28px;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 800;
     color: #fff;
     cursor: pointer;
@@ -210,25 +190,14 @@ body {
     text-shadow: 0 2px 3px rgba(0,0,0,0.8);
     box-shadow: 0 0 14px rgba(255, 203, 59, 0.5), 0 6px 12px rgba(0,0,0,0.7);
 }
-.gold-btn {
-    background: linear-gradient(180deg, #1e62d0 0%, #05235c 100%);
-}
+.gold-btn { background: linear-gradient(180deg, #1e62d0 0%, #05235c 100%); }
 .blue-btn {
     background: linear-gradient(180deg, #1e62d0 0%, #05235c 100%);
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.15;
 }
-.btn-3d:active {
-    transform: scale(0.96);
-}
 
-/* Setup Screen Rows */
-.setup-hint {
-    text-align: center;
-    font-size: 12px;
-    color: #b5d2ff;
-    margin-bottom: 8px;
-}
+/* Setup Screen */
 .players-input-list {
     display: flex;
     flex-direction: column;
@@ -243,8 +212,7 @@ body {
     padding: 7px 10px;
     border-radius: 10px;
     border: 1.5px solid transparent;
-    opacity: 0.55;
-    transition: 0.2s;
+    opacity: 0.45;
 }
 .player-row.selected-row {
     opacity: 1;
@@ -267,7 +235,6 @@ body {
 .row-check.checked {
     background: radial-gradient(circle, #4dff6b, #0fa329);
     border-color: #fff;
-    box-shadow: 0 0 8px #3cdd5b;
 }
 .color-dot {
     width: 22px;
@@ -289,7 +256,6 @@ body {
     font-weight: 700;
     color: #111;
 }
-
 .player-count-tabs {
     display: flex;
     justify-content: center;
@@ -318,20 +284,21 @@ body {
 }
 .btn-back {
     position: absolute;
-    bottom: 14px;
-    left: 14px;
+    bottom: 12px;
+    left: 12px;
     width: 44px;
     height: 44px;
-    border-radius: 12px;
-    border: 2px solid var(--gold-border);
-    background: linear-gradient(180deg, #1b5bc7, #062259);
+    border-radius: 50%;
+    border: 2.5px solid var(--gold-border);
+    background: linear-gradient(180deg, #2575f5, #08296c);
     color: var(--gold-border);
     font-size: 20px;
     font-weight: 900;
     cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
 }
 
-/* ================= SETTINGS MODAL (WIN PROBABILITY) ================= */
+/* ================= MODALS (SETTINGS & 1-2-3-4 BOXES) ================= */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -342,8 +309,8 @@ body {
     justify-content: center;
     padding: 14px;
 }
-.modal-overlay.hidden {
-    display: none;
+.modal-overlay.hidden, .hidden {
+    display: none !important;
 }
 .modal-card {
     width: 100%;
@@ -353,17 +320,15 @@ body {
     border-radius: 16px;
     padding: 14px;
     box-shadow: 0 0 25px rgba(255, 203, 59, 0.5);
+    position: relative;
 }
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 }
-.modal-header h2 {
-    font-size: 16px;
-    color: #ffe047;
-}
+.modal-header h2 { font-size: 16px; color: #ffe047; }
 .close-x {
     width: 30px;
     height: 30px;
@@ -374,45 +339,102 @@ body {
     font-weight: 900;
     cursor: pointer;
 }
-.modal-sub {
-    font-size: 11px;
-    color: #bdd6ff;
+
+.setting-label {
+    font-size: 12px;
+    color: #ffe066;
+    font-weight: 700;
+}
+.profile-input-row {
+    display: flex;
+    gap: 8px;
+    margin: 6px 0 12px;
+}
+.profile-input-row input {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 2px solid #3c78d8;
+    font-weight: 700;
+}
+.btn-ok {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 2px solid var(--gold-border);
+    background: #1b65e6;
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+}
+.toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    padding: 6px 0;
+}
+
+.secret-divider {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: #4eff6b;
+    margin: 8px 0;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(255,255,255,0.3);
+}
+.box-config-tabs {
+    display: flex;
+    gap: 6px;
     margin-bottom: 10px;
 }
+.box-tab {
+    flex: 1;
+    padding: 6px 0;
+    border-radius: 8px;
+    border: 1.5px solid #3c78d8;
+    background: #051a44;
+    color: #fff;
+    font-weight: 800;
+    font-size: 12px;
+    cursor: pointer;
+}
+.box-tab.active {
+    background: var(--gold-border);
+    color: #03153a;
+    border-color: #fff;
+}
+
 .prob-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: 62vh;
+    gap: 8px;
+    max-height: 46vh;
     overflow-y: auto;
 }
 .prob-item {
     background: rgba(0, 12, 38, 0.6);
     border: 1px solid #2b64c2;
     border-radius: 10px;
-    padding: 8px 10px;
+    padding: 6px 10px;
 }
 .prob-top {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 6px;
-    font-size: 13px;
+    margin-bottom: 4px;
+    font-size: 12px;
 }
 .prob-badge {
     margin-left: auto;
     background: #ffe047;
     color: #03153a;
     font-weight: 900;
-    padding: 2px 8px;
+    padding: 1px 8px;
     border-radius: 10px;
-    font-size: 12px;
+    font-size: 11px;
 }
-.prob-slider {
-    width: 100%;
-    accent-color: #ffe047;
-    margin-bottom: 6px;
-}
+.prob-slider { width: 100%; accent-color: #ffe047; }
 .preset-btns {
     display: flex;
     justify-content: space-between;
@@ -423,83 +445,101 @@ body {
     background: #0d357a;
     border: 1px solid #3c78d8;
     color: #fff;
-    border-radius: 6px;
-    padding: 3px 0;
-    font-size: 11px;
+    border-radius: 5px;
+    padding: 2px 0;
+    font-size: 10px;
     font-weight: 700;
-    cursor: pointer;
 }
-.preset-btns button:active {
-    background: #ffe047;
-    color: #000;
-}
-.modal-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 12px;
-}
-.btn-reset, .btn-save {
-    flex: 1;
-    padding: 9px;
+.modal-actions { margin-top: 10px; }
+.btn-save {
+    width: 100%;
+    padding: 10px;
     border-radius: 20px;
     font-weight: 800;
     border: 2px solid var(--gold-border);
-    cursor: pointer;
-}
-.btn-reset {
-    background: #445577;
-    color: #fff;
-}
-.btn-save {
     background: linear-gradient(180deg, #28a745, #145c25);
     color: #fff;
+    cursor: pointer;
+}
+.save-toast {
+    text-align: center;
+    color: #4eff6b;
+    font-weight: 800;
+    font-size: 13px;
+    margin-top: 6px;
 }
 
-.quick-card {
+/* 1, 2, 3, 4 Box Selection Grid */
+.box-select-card {
     text-align: center;
-    position: relative;
-    padding: 22px 16px;
+    padding: 20px 16px;
 }
-.quick-card .close-x {
+.box-select-card .close-x {
     position: absolute;
     top: -10px;
     right: -10px;
 }
-.quick-preview {
+.quick-banner {
     color: #4eff4e;
+    font-size: 13px;
     font-weight: 800;
-    font-size: 16px;
-    margin: 14px 0 18px;
+    margin-bottom: 10px;
+}
+.four-boxes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+}
+.game-box-card {
+    background: linear-gradient(180deg, #1b65e6, #062561);
+    border: 2.5px solid var(--gold-border);
+    border-radius: 14px;
+    padding: 16px 10px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+    transition: transform 0.15s;
+}
+.game-box-card:active {
+    transform: scale(0.94);
+}
+.box-num {
+    font-size: 32px;
+    font-weight: 900;
+    color: #ffe047;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.8);
+}
+.game-box-card span {
+    font-size: 12px;
+    color: #d4e5ff;
+    font-weight: 700;
 }
 
-/* ================= GAME SCREEN HUD & LUDO KING BOARD ================= */
+/* ================= SCREEN 3: LUDO KING HUD & BOARD ================= */
 .hud-row {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 6px 0;
+    margin: 4px 0;
 }
 .hud-wrapper {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
-.player-hud {
-    background: linear-gradient(180deg, #1b5bc7, #0b2d70);
-    border: 2px solid var(--gold-border);
-    border-radius: 8px;
-    padding: 4px 8px;
-    width: 112px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-    transition: 0.2s;
-}
-.player-hud.inactive {
-    opacity: 0.2;
+.hud-wrapper.inactive-player {
+    visibility: hidden;
     pointer-events: none;
 }
-.player-hud.active-turn {
-    box-shadow: 0 0 14px #ffe047;
+
+.player-hud {
+    background: linear-gradient(180deg, #2769c4 0%, #16448a 100%);
+    border: 2px solid var(--gold-border);
+    border-radius: 7px;
+    padding: 4px 7px;
+    width: 108px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.55);
 }
 .hud-controls {
     display: flex;
@@ -507,50 +547,73 @@ body {
     justify-content: space-between;
 }
 .hud-pin {
-    width: 28px;
-    height: 34px;
+    width: 26px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Pink Rounded Square Dice Box like Original Ludo King */
+/* Pink Rounded Dice Box (Empty when waiting, holds dice on turn) */
 .dice-box {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(180deg, #ffdce2 0%, #eca2ae 100%);
-    border-radius: 8px;
-    border: 2px solid #fff;
+    width: 52px;
+    height: 48px;
+    background: linear-gradient(180deg, #f8d4da 0%, #e59ca8 100%);
+    border-radius: 7px;
+    border: 1.5px solid #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     position: relative;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.25);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
 }
 .dice-holder {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Blinking Yellow Turn Arrow (Like Video) */
+/* Thick 3D Yellow-Orange Arrow (Like Video 2) */
 .turn-arrow {
-    font-size: 26px;
-    color: #ffcb2b;
-    text-shadow: 0 2px 4px #000;
+    width: 28px;
+    height: 24px;
     visibility: hidden;
-    font-weight: 900;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.8));
 }
 .turn-arrow.active {
     visibility: visible;
-    animation: arrowBounce 0.55s infinite alternate ease-in-out;
 }
-@keyframes arrowBounce {
-    from { transform: translateX(0); }
-    to { transform: translateX(-7px); }
+.turn-arrow.left-pointing {
+    background: linear-gradient(180deg, #ffe033, #ff8800);
+    clip-path: polygon(0 25%, 55% 25%, 55% 0, 100% 50%, 55% 100%, 55% 75%, 0 75%);
+    animation: bounceRight 0.5s infinite alternate ease-in-out;
+}
+.turn-arrow.left-pointing-in {
+    background: linear-gradient(180deg, #ffe033, #ff8800);
+    clip-path: polygon(100% 25%, 45% 25%, 45% 0, 0 50%, 45% 100%, 45% 75%, 100% 75%);
+    animation: bounceLeft 0.5s infinite alternate ease-in-out;
+}
+.turn-arrow.right-pointing {
+    background: linear-gradient(180deg, #ffe033, #ff8800);
+    clip-path: polygon(100% 25%, 45% 25%, 45% 0, 0 50%, 45% 100%, 45% 75%, 100% 75%);
+    animation: bounceLeft 0.5s infinite alternate ease-in-out;
+}
+.turn-arrow.right-pointing-in {
+    background: linear-gradient(180deg, #ffe033, #ff8800);
+    clip-path: polygon(0 25%, 55% 25%, 55% 0, 100% 50%, 55% 100%, 55% 75%, 0 75%);
+    animation: bounceRight 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes bounceRight {
+    from { transform: translateX(-6px); }
+    to   { transform: translateX(2px); }
+}
+@keyframes bounceLeft {
+    from { transform: translateX(6px); }
+    to   { transform: translateX(-2px); }
 }
 
 /* Board Wrapper */
@@ -558,8 +621,8 @@ body {
     width: 100%;
     aspect-ratio: 1 / 1;
     background: #fff;
-    border: 2px solid #111;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.85);
+    border: 1.5px solid #222;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
 }
 .ludo-board {
     width: 100%;
