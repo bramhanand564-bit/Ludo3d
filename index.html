@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ludo Royal 3D</title>
+    <title>Ludo King 3D</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 </head>
@@ -13,10 +13,9 @@
 
         <!-- ================= SCREEN 1: MAIN MENU ================= -->
         <div id="menu-screen" class="screen active">
-            <!-- Top Bar with Settings Icon -->
             <div class="top-bar">
-                <div class="profile-pill">👑 Ludo King 3D</div>
-                <button id="btn-open-settings" class="settings-icon-btn" title="Settings">⚙️</button>
+                <div class="profile-pill" id="display-profile-name">👤 Player</div>
+                <button id="btn-open-settings" class="settings-icon-btn">⚙️</button>
             </div>
 
             <div class="panel-box">
@@ -36,8 +35,8 @@
                     <label class="mode-card selected" data-mode="local">
                         <div class="mode-icon">👥</div>
                         <div class="mode-info">
-                            <h3>Classic Local</h3>
-                            <p>Pass & Play with Friends</p>
+                            <h3>Classic</h3>
+                            <p>Pass & Play</p>
                         </div>
                         <div class="radio-circle"></div>
                     </label>
@@ -46,7 +45,7 @@
                         <div class="mode-icon">🤖</div>
                         <div class="mode-info">
                             <h3>vs Computer</h3>
-                            <p>Play Offline with Smart AI</p>
+                            <p>Offline Smart AI</p>
                         </div>
                         <div class="radio-circle"></div>
                     </label>
@@ -56,98 +55,106 @@
             <button id="btn-to-setup" class="btn-3d gold-btn">Next</button>
         </div>
 
-        <!-- ================= SETTINGS MODAL (WIN PROBABILITY) ================= -->
+        <!-- ================= SETTINGS MODAL (SECRET 9090 UNLOCK) ================= -->
         <div id="settings-modal" class="modal-overlay hidden">
             <div class="modal-card">
                 <div class="modal-header">
-                    <h2>⚙️ GAME SETTINGS & LUCK %</h2>
+                    <h2>⚙️ SETTINGS</h2>
                     <button id="btn-close-settings" class="close-x">✖</button>
                 </div>
-                <p class="modal-sub">Jis color ka % zyada hoga, game mein uske jeetne ke chances sabse zyada honge:</p>
 
-                <div class="prob-list">
-                    <!-- Blue Probability -->
-                    <div class="prob-item">
-                        <div class="prob-top">
-                            <span class="color-dot blue"></span>
-                            <strong>BLUE (नीला)</strong>
-                            <span id="val-prob-blue" class="prob-badge">50%</span>
-                        </div>
-                        <input type="range" min="0" max="100" value="50" class="prob-slider blue-slider" data-color="blue" id="slider-blue">
-                        <div class="preset-btns">
-                            <button data-color="blue" data-val="10">10%</button>
-                            <button data-color="blue" data-val="25">25%</button>
-                            <button data-color="blue" data-val="50">50%</button>
-                            <button data-color="blue" data-val="75">75%</button>
-                            <button data-color="blue" data-val="100">100%</button>
-                        </div>
+                <!-- Normal Profile & Sound Settings -->
+                <div class="normal-settings">
+                    <label class="setting-label">CHANGE PROFILE NAME:</label>
+                    <div class="profile-input-row">
+                        <input type="text" id="input-profile-code" placeholder="Enter Profile Name">
+                        <button id="btn-check-profile" class="btn-ok">OK</button>
                     </div>
-
-                    <!-- Red Probability -->
-                    <div class="prob-item">
-                        <div class="prob-top">
-                            <span class="color-dot red"></span>
-                            <strong>RED (लाल)</strong>
-                            <span id="val-prob-red" class="prob-badge">50%</span>
-                        </div>
-                        <input type="range" min="0" max="100" value="50" class="prob-slider red-slider" data-color="red" id="slider-red">
-                        <div class="preset-btns">
-                            <button data-color="red" data-val="10">10%</button>
-                            <button data-color="red" data-val="25">25%</button>
-                            <button data-color="red" data-val="50">50%</button>
-                            <button data-color="red" data-val="75">75%</button>
-                            <button data-color="red" data-val="100">100%</button>
-                        </div>
-                    </div>
-
-                    <!-- Green Probability -->
-                    <div class="prob-item">
-                        <div class="prob-top">
-                            <span class="color-dot green"></span>
-                            <strong>GREEN (हरा)</strong>
-                            <span id="val-prob-green" class="prob-badge">50%</span>
-                        </div>
-                        <input type="range" min="0" max="100" value="50" class="prob-slider green-slider" data-color="green" id="slider-green">
-                        <div class="preset-btns">
-                            <button data-color="green" data-val="10">10%</button>
-                            <button data-color="green" data-val="25">25%</button>
-                            <button data-color="green" data-val="50">50%</button>
-                            <button data-color="green" data-val="75">75%</button>
-                            <button data-color="green" data-val="100">100%</button>
-                        </div>
-                    </div>
-
-                    <!-- Yellow Probability -->
-                    <div class="prob-item">
-                        <div class="prob-top">
-                            <span class="color-dot yellow"></span>
-                            <strong>YELLOW (पीला)</strong>
-                            <span id="val-prob-yellow" class="prob-badge">50%</span>
-                        </div>
-                        <input type="range" min="0" max="100" value="50" class="prob-slider yellow-slider" data-color="yellow" id="slider-yellow">
-                        <div class="preset-btns">
-                            <button data-color="yellow" data-val="10">10%</button>
-                            <button data-color="yellow" data-val="25">25%</button>
-                            <button data-color="yellow" data-val="50">50%</button>
-                            <button data-color="yellow" data-val="75">75%</button>
-                            <button data-color="yellow" data-val="100">100%</button>
-                        </div>
+                    <div class="toggle-row">
+                        <span>🔊 Game Sound Effects</span>
+                        <input type="checkbox" id="chk-sound" checked>
                     </div>
                 </div>
 
-                <div class="modal-actions">
-                    <button id="btn-reset-prob" class="btn-reset">Reset All (50%)</button>
-                    <button id="btn-save-prob" class="btn-save">SAVE & APPLY</button>
-                </div>
-            </div>
-        </div>
+                <!-- SECRET LUCK PANEL (Only visible when Profile Name == 9090) -->
+                <div id="secret-luck-panel" class="hidden">
+                    <div class="secret-divider">🔓 SECRET BOX LUCK CONFIG (1 - 4)</div>
 
-        <!-- ================= ONE TOKEN OUT POPUP (LIKE VIDEO 00:10) ================= -->
-        <div id="quick-popup" class="modal-overlay hidden">
-            <div class="modal-card quick-card">
-                <button id="btn-close-quick" class="close-x">✖</button>
-                <div class="quick-preview">📍 Keep one token out for all!</div>
-                <button id="btn-confirm-quick" class="btn-3d gold-btn">OKAY</button>
+                    <!-- 4 Box Tabs inside Secret Settings -->
+                    <div class="box-config-tabs">
+                        <button class="box-tab active" data-box="1">Box 1</button>
+                        <button class="box-tab" data-box="2">Box 2</button>
+                        <button class="box-tab" data-box="3">Box 3</button>
+                        <button class="box-tab" data-box="4">Box 4</button>
+                    </div>
+
+                    <div class="prob-list">
+                        <div class="prob-item">
+                            <div class="prob-top">
+                                <span class="color-dot blue"></span><strong>BLUE</strong>
+                                <span id="val-prob-blue" class="prob-badge">50%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="50" class="prob-slider" data-color="blue" id="slider-blue">
+                            <div class="preset-btns">
+                                <button data-color="blue" data-val="10">10%</button>
+                                <button data-color="blue" data-val="25">25%</button>
+                                <button data-color="blue" data-val="50">50%</button>
+                                <button data-color="blue" data-val="75">75%</button>
+                                <button data-color="blue" data-val="100">100%</button>
+                            </div>
+                        </div>
+
+                        <div class="prob-item">
+                            <div class="prob-top">
+                                <span class="color-dot red"></span><strong>RED</strong>
+                                <span id="val-prob-red" class="prob-badge">50%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="50" class="prob-slider" data-color="red" id="slider-red">
+                            <div class="preset-btns">
+                                <button data-color="red" data-val="10">10%</button>
+                                <button data-color="red" data-val="25">25%</button>
+                                <button data-color="red" data-val="50">50%</button>
+                                <button data-color="red" data-val="75">75%</button>
+                                <button data-color="red" data-val="100">100%</button>
+                            </div>
+                        </div>
+
+                        <div class="prob-item">
+                            <div class="prob-top">
+                                <span class="color-dot green"></span><strong>GREEN</strong>
+                                <span id="val-prob-green" class="prob-badge">50%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="50" class="prob-slider" data-color="green" id="slider-green">
+                            <div class="preset-btns">
+                                <button data-color="green" data-val="10">10%</button>
+                                <button data-color="green" data-val="25">25%</button>
+                                <button data-color="green" data-val="50">50%</button>
+                                <button data-color="green" data-val="75">75%</button>
+                                <button data-color="green" data-val="100">100%</button>
+                            </div>
+                        </div>
+
+                        <div class="prob-item">
+                            <div class="prob-top">
+                                <span class="color-dot yellow"></span><strong>YELLOW</strong>
+                                <span id="val-prob-yellow" class="prob-badge">50%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="50" class="prob-slider" data-color="yellow" id="slider-yellow">
+                            <div class="preset-btns">
+                                <button data-color="yellow" data-val="10">10%</button>
+                                <button data-color="yellow" data-val="25">25%</button>
+                                <button data-color="yellow" data-val="50">50%</button>
+                                <button data-color="yellow" data-val="75">75%</button>
+                                <button data-color="yellow" data-val="100">100%</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button id="btn-save-prob" class="btn-save">💾 SAVE BOX SETTINGS</button>
+                    </div>
+                    <div id="save-toast" class="save-toast hidden">✅ Saved Successfully!</div>
+                </div>
             </div>
         </div>
 
@@ -155,7 +162,6 @@
         <div id="setup-screen" class="screen">
             <div class="panel-box">
                 <div class="panel-header">CHOOSE COLOR AND NAME</div>
-                <p class="setup-hint">Koi bhi 2, 3 ya 4 colors tick (✔) karein:</p>
 
                 <div class="players-input-list">
                     <div class="player-row selected-row" data-color="blue">
@@ -203,29 +209,59 @@
             <button id="btn-back-menu" class="btn-back">↩</button>
         </div>
 
-        <!-- ================= SCREEN 3: LUDO KING GAME BOARD ================= -->
+        <!-- ================= 1, 2, 3, 4 BOX SELECTION MODAL ================= -->
+        <div id="box-select-modal" class="modal-overlay hidden">
+            <div class="modal-card box-select-card">
+                <button id="btn-close-box-modal" class="close-x">✖</button>
+                <div class="panel-header">SELECT BOARD MODE</div>
+                <div id="quick-mode-banner" class="quick-banner hidden">Keep one token out for all!</div>
+
+                <div class="four-boxes-grid">
+                    <div class="game-box-card" data-box="1">
+                        <div class="box-num">1</div>
+                        <span>Classic 1</span>
+                    </div>
+                    <div class="game-box-card" data-box="2">
+                        <div class="box-num">2</div>
+                        <span>Classic 2</span>
+                    </div>
+                    <div class="game-box-card" data-box="3">
+                        <div class="box-num">3</div>
+                        <span>Classic 3</span>
+                    </div>
+                    <div class="game-box-card" data-box="4">
+                        <div class="box-num">4</div>
+                        <span>Classic 4</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SCREEN 3: 100% ORIGINAL LUDO KING BOARD ================= -->
         <div id="game-screen" class="screen">
 
             <!-- Top HUDs (Red & Green) -->
             <div class="hud-row top-hud">
-                <div class="hud-wrapper">
-                    <div id="hud-red" class="player-hud red-hud inactive">
+                <div class="hud-wrapper" id="wrap-red">
+                    <div id="hud-red" class="player-hud">
                         <div class="hud-controls">
                             <div class="hud-pin" id="hud-pin-red"></div>
                             <div class="dice-box" data-player="red">
                                 <div class="dice-holder" id="dice-red"></div>
+                                <div class="cube-stage hidden" id="cube-red"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="turn-arrow right-arrow" id="arrow-red">⬅</div>
+                    <div class="turn-arrow right-pointing" id="arrow-red"></div>
                 </div>
 
-                <div class="hud-wrapper right-side">
-                    <div class="turn-arrow left-arrow" id="arrow-green">➡</div>
-                    <div id="hud-green" class="player-hud green-hud">
+                <div class="hud-wrapper right-side" id="wrap-green">
+                    <div class="turn-arrow left-pointing" id="arrow-green"></div>
+                    <div id="hud-green" class="player-hud">
                         <div class="hud-controls">
                             <div class="dice-box" data-player="green">
                                 <div class="dice-holder" id="dice-green"></div>
+                                <div class="cube-stage hidden" id="cube-green"></div>
                             </div>
                             <div class="hud-pin" id="hud-pin-green"></div>
                         </div>
@@ -240,24 +276,26 @@
 
             <!-- Bottom HUDs (Blue & Yellow) -->
             <div class="hud-row bottom-hud">
-                <div class="hud-wrapper">
-                    <div id="hud-blue" class="player-hud blue-hud active-turn">
+                <div class="hud-wrapper" id="wrap-blue">
+                    <div id="hud-blue" class="player-hud">
                         <div class="hud-controls">
                             <div class="hud-pin" id="hud-pin-blue"></div>
                             <div class="dice-box" data-player="blue">
                                 <div class="dice-holder" id="dice-blue"></div>
+                                <div class="cube-stage hidden" id="cube-blue"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="turn-arrow right-arrow active" id="arrow-blue">⬅</div>
+                    <div class="turn-arrow left-pointing-in" id="arrow-blue"></div>
                 </div>
 
-                <div class="hud-wrapper right-side">
-                    <div class="turn-arrow left-arrow" id="arrow-yellow">➡</div>
-                    <div id="hud-yellow" class="player-hud yellow-hud inactive">
+                <div class="hud-wrapper right-side" id="wrap-yellow">
+                    <div class="turn-arrow right-pointing-in" id="arrow-yellow"></div>
+                    <div id="hud-yellow" class="player-hud">
                         <div class="hud-controls">
                             <div class="dice-box" data-player="yellow">
                                 <div class="dice-holder" id="dice-yellow"></div>
+                                <div class="cube-stage hidden" id="cube-yellow"></div>
                             </div>
                             <div class="hud-pin" id="hud-pin-yellow"></div>
                         </div>
@@ -265,7 +303,7 @@
                 </div>
             </div>
 
-            <button id="btn-leave-game" class="btn-back menu-bars">☰</button>
+            <button id="btn-leave-game" class="btn-back round-menu-btn">☰</button>
         </div>
 
     </div>
