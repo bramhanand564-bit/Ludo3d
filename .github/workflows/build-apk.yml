@@ -3,7 +3,7 @@ name: Build Offline Ludo APK
 on:
   push:
     branches: [ "main", "master" ]
-  workflow_dispatch: # Isse aap jab chahein manually button daba kar bhi build kar sakte hain
+  workflow_dispatch:
 
 jobs:
   build-android-apk:
@@ -18,13 +18,13 @@ jobs:
         with:
           node-version: '20'
 
-      - name: 3. Setup Java JDK 17 (For Android Gradle)
+      - name: 3. Setup Java JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: 4. Create Capacitor Android Project & Copy Game Files
+      - name: 4. Create Capacitor Project & Copy Files
         run: |
           mkdir -p www
           cp index.html style.css script.js www/
@@ -34,18 +34,53 @@ jobs:
           npx cap add android
           npx cap copy android
 
-      - name: 5. Lock Portrait Mode in AndroidManifest
+      - name: 5. Set Custom Ludo King App Icon
+        run: |
+          sudo apt-get update && sudo apt-get install -y imagemagick
+          if [ -f "icon.png" ]; then
+            cp icon.png app-icon.png
+          elif [ -f "logo.png" ]; then
+            cp logo.png app-icon.png
+          elif [ -f "icon.jpg" ]; then
+            convert icon.jpg app-icon.png
+          else
+            convert -size 512x512 xc:none \
+              -fill "#ec1c24" -draw "rectangle 0,0 256,256" \
+              -fill "#00a651" -draw "rectangle 256,0 512,256" \
+              -fill "#00aeef" -draw "rectangle 0,256 256,512" \
+              -fill "#fff200" -draw "rectangle 256,256 512,512" \
+              -fill "#ffffff" -draw "rectangle 210,0 302,512" \
+              -fill "#ffffff" -draw "rectangle 0,210 512,302" \
+              -fill "#07225c" -stroke "#ffcb3b" -strokewidth 14 -draw "circle 256,256 256,125" \
+              -fill "#ffdf33" -stroke none -pointsize 62 -gravity center -annotate +0-22 "LUDO" \
+              -fill "#ffffff" -pointsize 50 -gravity center -annotate +0+34 "KING" \
+              app-icon.png
+          fi
+          rm -rf android/app/src/main/res/mipmap-anydpi-v26
+          RES="android/app/src/main/res"
+          convert app-icon.png -resize 48x48   "$RES/mipmap-mdpi/ic_launcher.png"
+          convert app-icon.png -resize 48x48   "$RES/mipmap-mdpi/ic_launcher_round.png"
+          convert app-icon.png -resize 72x72   "$RES/mipmap-hdpi/ic_launcher.png"
+          convert app-icon.png -resize 72x72   "$RES/mipmap-hdpi/ic_launcher_round.png"
+          convert app-icon.png -resize 96x96   "$RES/mipmap-xhdpi/ic_launcher.png"
+          convert app-icon.png -resize 96x96   "$RES/mipmap-xhdpi/ic_launcher_round.png"
+          convert app-icon.png -resize 144x144 "$RES/mipmap-xxhdpi/ic_launcher.png"
+          convert app-icon.png -resize 144x144 "$RES/mipmap-xxhdpi/ic_launcher_round.png"
+          convert app-icon.png -resize 192x192 "$RES/mipmap-xxxhdpi/ic_launcher.png"
+          convert app-icon.png -resize 192x192 "$RES/mipmap-xxxhdpi/ic_launcher_round.png"
+
+      - name: 6. Lock Portrait Mode in AndroidManifest
         run: |
           sed -i 's/<activity/<activity android:screenOrientation="portrait"/g' android/app/src/main/AndroidManifest.xml
 
-      - name: 6. Build Signed Offline APK
+      - name: 7. Build Signed Offline APK
         run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
           cp app/build/outputs/apk/debug/app-debug.apk ../Ludo-Royal-3D.apk
 
-      - name: 7. Upload APK as Downloadable ZIP on GitHub
+      - name: 8. Upload APK as Downloadable ZIP on GitHub
         uses: actions/upload-artifact@v4
         with:
           name: Ludo-Royal-3D-APK
